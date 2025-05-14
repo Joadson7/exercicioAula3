@@ -13,7 +13,8 @@ public class Main {
 		System.out.println("\nSISTEMA DE CADASTRO DE ALUNO\n");
 
 		System.out.println("(1) CADASTRAR ALUNO");
-		System.out.println("(2) EXCLUIR ALUNO");
+		System.out.println("(2) ATUALIZAR ALUNO");
+		System.out.println("(3) EXCLUIR ALUNO");
 
 		var scanner = new Scanner(System.in);
 
@@ -28,6 +29,11 @@ public class Main {
 			break;
 
 		case "2":
+			alunoController.atualizarAluno();
+			;
+			break;
+			
+		case "3":
 			alunoController.excluirAluno();
 			;
 			break;

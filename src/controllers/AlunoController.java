@@ -1,5 +1,6 @@
 package controllers;
 
+
 import java.util.Scanner;
 
 import entities.Aluno;
@@ -27,14 +28,34 @@ public class AlunoController {
 
 		alunoRepository.inserir(aluno);
 	}
+	
+	public void atualizarAluno() {
+		
+		System.out.println("\nAtualizar Aluno\n");
+		var aluno = new Aluno();
+		
+		System.out.println("Informe a matricula....: ");
+		aluno.setMatricula(scanner.nextLine());
+		System.out.println("Informe o Id do Aluno...: ");
+		aluno.setIdAluno(Integer.parseInt(scanner.nextLine()));
+		System.out.println("Informe o nome...: ");
+		aluno.setNome(scanner.nextLine());
+		System.out.println("Informe o CPF...: ");
+		aluno.setCpf(scanner.nextLine());
+		
+		var alunoRepository = new AlunoRepository();
+		alunoRepository.atulizar(aluno);
+	}
+	
+	
 
 	public void excluirAluno() {
 
 		System.out.print("Informe a matrícula do aluno....: ");
-		String matricula = scanner.nextLine().trim(); // remove espaços extras
+		String matricula = scanner.nextLine().trim(); 
 
 		var alunoRepository = new AlunoRepository();
-		alunoRepository.excluir(matricula); // OK, aceita String
+		alunoRepository.excluir(matricula); 
 
 	}
 }

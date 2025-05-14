@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import entities.Aluno;
 import factories.ConnectionFactory;
 
 public class AlunoRepository {
@@ -63,6 +64,36 @@ public class AlunoRepository {
             e.printStackTrace();
         }
     }
+    
+    
+    public void atulizar(Aluno aluno) {
+    	
+    	try(var connection = ConnectionFactory.obterConexao();
+    			PreparedStatement stmt = connection.prepareStatement("update aluno set idaluno=?, nome=?, cpf=? where matricula=?")) {
+			
+    		stmt.setInt(1, aluno.getIdAluno());
+    		stmt.setString(2, aluno.getNome());
+    		stmt.setString(3, aluno.getCpf());
+    		stmt.setString(4, aluno.getMatricula());
+    		
+    		var result = stmt.executeUpdate();
+    		
+    		if (result > 0) {
+				
+    			System.out.println("\nAluno atualizado com sucesso! Qdt de alunos atualizados: " + result);
+			} else {
+				
+				System.out.println("\nNenhum aluno encontrado, para atualizar! Verifique a matricula.");
+			}
+    		
+    		
+		} catch (Exception e) {
+			System.out.println("\nFalha ao atualizar aluno.\n" + e.getMessage());
+		}
+    	
+    	
+    }
+    
     
     public void excluir(String matricula) {
 		
